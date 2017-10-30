@@ -8,32 +8,36 @@ var express = require('express'),
   A way to force the ordering of the themes.
 */
 var theme_order = [
-      // 'Universal Credit',
-      'Health & Disability',
-      'Working Age',
-      'Retirement Provision',
-      'Fraud & Debt',
-      'Platforms'
+      'Benefits',
+      'Births, deaths, marriages and care',
+      'Business and self-employed',
+      'Childcare and parenting',
+      'Citizenship and living in the UK',
+      'Crime, justice and the law',
+      'Disabled people',
+      'Driving and transport',
+      'Education, training and skills',
+      'Employing people',
+      'Environment and countryside',
+      'Housing and local services',
+      'Government Internal',
+      'Money and tax',
+      'Passports, travel and living abroad',
+      'Visas and immigration',
+      'Working, jobs and pensions',
     ];
 
-var priority_order = [
-      'Top',
-      'High',
-      'Medium',
-      'Low'
+var organisation_order = [
+      'Home Office',
+      'Department for Work and Pensions',
+      'Ministry of Justice',
+      'Department for Environment, Food & Rural Affairs'
     ];
-
-var priority_descriptions = {
-      "Top":"",
-      "High":"",
-      "Medium":"",
-      "Low":""
-    };
 
 /*
   A way to force the ordering of the phases.
 */
-var phase_order = ['backlog','discovery','alpha','beta','public beta','live'];
+var phase_order = ['unknown','discovery','alpha','beta','public beta','live'];
 
 /*
   A function to gather the data by
@@ -75,11 +79,11 @@ router.get('/', function (req, res)
 });
 
 /*
-  - - - - - - - - - -  LOCATION INDEX PAGE - - - - - - - - - -
+  - - - - - - - - - -  ORGANISATION INDEX PAGE - - - - - - - - - -
 */
-router.get('/location/', function (req, res)
+router.get('/organisation/', function (req, res)
 {
-  var data = _.groupBy(req.app.locals.data, 'location');
+  var data = _.groupBy(req.app.locals.data, 'organisation');
   var new_data = indexify(data);
 
   var loc_order = [];
@@ -93,33 +97,12 @@ router.get('/location/', function (req, res)
   res.render('index', {
     "data":new_data,
     "counts":phases,
-    "view":"location",
-    "theme_order":loc_order,
+    "view":"organisation",
+    "theme_order":org_order,
     "phase_order":phase_order
   });
 });
 
-
-/*
-  - - - - - - - - - -  INDEX PAGE - - - - - - - - - -
-*/
-router.get('/priority/', function (req, res)
-{
-  var data = _.groupBy(req.app.locals.data, 'priority');
-  var new_data = indexify(data);
-
-  var phases = _.countBy(req.app.locals.data, 'phase');
-
-  res.render('index', {
-    "data":new_data,
-    "counts":phases,
-    "view":"priority",
-    "theme_order":priority_order,
-    "phase_order":phase_order,
-    "priority_descriptions":priority_descriptions
-    }
-  );
-});
 
 /*
   - - - - - - - - - -  PROJECT PAGE - - - - - - - - - -
