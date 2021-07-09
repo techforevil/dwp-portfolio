@@ -1,0 +1,8 @@
+{
+  "name": "Support for early career teachers",
+  "description": "This service is for teachers and mentors to access Department for Education-accredited training and support materials.",
+  "organisation": "Department for Education",
+  "theme": "Education, training and skills",
+  "phase": "alpha",
+  "liveservice": "https://support-for-early-career-teachers.education.gov.uk"
+}

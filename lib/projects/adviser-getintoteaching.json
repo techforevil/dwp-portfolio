@@ -1,0 +1,9 @@
+{
+  "name": "Get an adviser",
+  "description": "If you want to become a teacher or return to teaching in England, a teacher training adviser can guide you through the process with free one-to-one support.",
+  "organisation": "Department for Education",
+  "theme": "Education, training and skills",
+  "phase": "beta",
+  "liveservice": "https://adviser-getintoteaching.education.gov.uk",
+  "github": "https://github.com/DFE-Digital/get-teacher-training-adviser-service"
+}
